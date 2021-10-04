@@ -7,14 +7,7 @@ function clean_helper(parent_id, element_class) {
         let element_links = element.querySelectorAll('a');
 
         element_links.forEach(tag => {
-            let pinterest_matches = ["https://pinterest", "https://www.pinterest"]
-
-            let url_contains_pinterest = false;
-
-            pinterest_matches.forEach(match => {
-                if (tag.href.indexOf(match) != -1)
-                    url_contains_pinterest = true;
-            })
+            let url_contains_pinterest = (new RegExp('.*https.*pinterest.*')).test(tag.href);
 
             if (url_contains_pinterest)
                 element.remove();
